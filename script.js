@@ -2,45 +2,57 @@
 
 $(document).ready(function(){
 
-
   let userArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
-    for (let i = 0; i < userArray.length; i++) {   //userArray.length
+    for (let i = 0; i < userArray.length; i++) {
       let channelName, logo, onOff;
       let user =  userArray[i];
       let url = 'https://wind-bow.gomix.me/twitch-api' + '/channels/' + user + '?callback=?';
       let url2 = 'https://wind-bow.gomix.me/twitch-api' + '/streams/' + user + '?callback=?';
 
-      //SEEMS LIKE DATA IS NOT COMING BACK IN ORDER AND IS GIVING PROBLEMS TO DISPLAY
-      $.getJSON(url, function(json){
-        let jsonString = JSON.stringify(json)
-          console.log(jsonString);
-        channelName = JSON.stringify(json.display_name);
-        channelName = channelName.replace(/"/, '');
-        channelName = channelName.replace(/"/, '');
-        console.log(channelName);
-        logo = json.logo; //image link for logo
-      });
+      //GET DISPLAY NAME FOR CHANNEL
+      $.ajax({
+        type: 'GET',
+        url: 'https://wind-bow.gomix.me/twitch-api' + '/channels/' + user + '?callback=?',
+        dataType: 'json',
+        success: function(json){
+          channelName = JSON.stringify(json.display_name);
+          channelName = channelName.replace(/"/, '');
+          channelName = channelName.replace(/"/, '');
+          console.log(channelName);
+          logo = json.logo;
+          addData();
+        }
+      })
+
+
 
     //CHECK IF STREAMER IS ONLINE
-      $.getJSON(url2, function(json){
+
+    $.ajax({
+      type: 'GET',
+      url: 'https://wind-bow.gomix.me/twitch-api' + '/streams/' + user + '?callback=?',
+      dataType: 'json',
+      success: function(json){
         if (json.stream !== null) {
-          console.log('online');
           onOff = 'online';
         }else {
-          console.log('offline');
           onOff = 'offline';
         }
-  });
+        //addData(' is currently ' + onOff);
+      }
+    })
 
-  //MAY NEED TO ADD CLASSES ETC.. TO HELP STYLE DIV
+
+
+
+  function addData(newData){
   let newDiv = document.createElement('div');
-  let content = document.createTextNode(channelName)// + ' is currently ' + onOff); //will change diplay just using to test
+  let content = document.createTextNode(channelName)// + newData) //+ ' is currently ' + onOff); //will change diplay just using to test
   newDiv.appendChild(content);
   document.body.appendChild(newDiv);
 }
-  //NEED TO DISPLAY ALL STREAMS WHEN PAGE LOADS
-  //DISPLAY ONLINE ONLY WHEN ONLINE IS CLICKED
-  //DISPLAY OFFLINE ONLY WHEN OFFLINE IS CLICKED
+
+}
 
 });
