@@ -43,3 +43,9 @@ h1{
   color: #fff;
   text-decoration: none;
 }
+
+/*ADDED ITEMS TO DOM, DISPLAY OF LIST*/
+
+li{
+  display: inline-block;
+}
