@@ -46,6 +46,15 @@ h1{
 
 /*ADDED ITEMS TO DOM, DISPLAY OF LIST*/
 
+.streamer-row{
+  margin-top: 50px;
+}
+
 li{
   display: inline-block;
+}
+
+img{
+  width: 200px;
+  height: auto;
 }
