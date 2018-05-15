@@ -1,14 +1,12 @@
 // Good eaample https://codepen.io/Olegukoff/full/ZLdWRv
 
-//************INSTEAD OF WRITING FUNCTIONI, WILL TRY TO PUT DIRECTLY INTO DOM FROM AJAX SUCCES FUNCTION
-
 $(document).ready(function(){
 
   let userArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
     for (let i = 0; i < userArray.length; i++) {
 
-      let channelName, logo, onOff;
+      let channelName, logo, onOff, info;
       let user =  userArray[i];
       let url = 'https://wind-bow.gomix.me/twitch-api' + '/channels/' + user + '?callback=?';
       let url2 = 'https://wind-bow.gomix.me/twitch-api' + '/streams/' + user + '?callback=?';
@@ -45,19 +43,22 @@ $(document).ready(function(){
         return $.getJSON(url2)
       }).then(function(json){
         if (json.stream !== null) {
-          onOff = 'online';
+          info = json.stream.game;
+
+          onOff = 'online ' + info;
         }else {
           onOff = 'offline';
         }
 
         //DISPLAY BY ADDING LIST ITEM
-        let li3 = document.createElement('li');
-        li3.innerText = onOff;
-        document.getElementById('list' + i).appendChild(li3);
+        let a = document.createElement('a');
+        a.innerText = onOff;
+        a.setAttribute('href', 'https://www.twitch.tv/' + user);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('class', 'channel-link')
+        document.getElementById('list' + i).appendChild(a);
+
       });
-
-
-  //NEED TO SHOW DETAILS ABOUT WHAT IS BEING STREAMED IF THE USSER IS ONLINE
 
 }
 
