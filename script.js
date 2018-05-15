@@ -56,6 +56,9 @@ $(document).ready(function(){
         document.getElementById('list' + i).appendChild(li3);
       });
 
+
+  //NEED TO SHOW DETAILS ABOUT WHAT IS BEING STREAMED IF THE USSER IS ONLINE
+
 }
 
 });

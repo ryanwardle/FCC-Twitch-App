@@ -18,16 +18,8 @@ body{
 
 h1{
   margin-top: 80px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
-
-.search{
-  width: 50%;
-  margin: auto;
-  border-radius: 25px;
-  height: 40px;
-}
-
 
 .col-4{
   margin-top: 75px;
@@ -59,7 +51,7 @@ li{
   display: inline-block;
   width: 125px;
   text-align: center;
-  margin-bottom: 20px;
+
 }
 
 img{
@@ -72,4 +64,6 @@ ul{
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  background-color: #6034b1;
+  margin-bottom: 30px;
 }
