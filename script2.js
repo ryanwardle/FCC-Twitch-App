@@ -1,6 +1,8 @@
-// Good eaample https://codepen.io/Olegukoff/full/ZLdWRv
-
 $(document).ready(function(){
+
+  showAllStreamers();
+
+function showAllStreamers(){
 
   let userArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
@@ -21,7 +23,6 @@ $(document).ready(function(){
         //DISPLAY DATA BY MAKING AND INSERTING LIST INTO DOM
         let newUl = document.createElement('ul');
         newUl.setAttribute('id', 'list' + i);
-
         document.getElementById('streamers').appendChild(newUl);
 
         let li1 = document.createElement('li');
@@ -62,7 +63,10 @@ $(document).ready(function(){
 
         //SETTING TEXT OF <A> IN DOM;
         a.innerText = onOff;
-      });
+
+
+
+
 
       //HAVE FULFILLED USER STORIES BUT CAN MAKE BETTER
       //1. ALL ONLINE OFFLINE SORT BUTTONS
@@ -70,6 +74,43 @@ $(document).ready(function(){
   //****WOULD BE ABOVE EXTRA****
       //3. ABILITY TO ADD USER TO LIST
       //4. ABILITY TO REMOVE USER
+
+
+
+
+
+    });
+
+
+}
+
+//*********WORKING ON CLEARING RESULTS SO I CAN CLEANLY DISPLAY ON CLICK, AND DOESNT REPEAT
+        $('#all').click(function(){
+          clearStreamers();
+          showAllStreamers();
+        });
+
+        function clearStreamers(){
+          let streamers = document.getElementById('streamers');
+          while (streamers.firstChild) {
+            streamers.removeChild(streamers.firstChild);
+          }
+        }
+
+        $('#online').click(function(){
+          if (onOff === 'offline') {
+            showAllStreamers();
+            document.getElementById('list' + i).style.display = 'none';
+          }
+        });
+
+        $('#offline').click(function(){
+          if (onOff === 'online ' + info) {
+            showAllStreamers();
+            document.getElementById('list' + i).style.display = 'none';
+          }
+        });
+
 }
 
 });

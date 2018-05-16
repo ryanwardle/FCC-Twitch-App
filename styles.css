@@ -35,16 +35,17 @@ h1{
 
 
 /*Template list*/
-.template-list{
-  margin: 50px 0 30px 0;
+.template-list,
+.online-list{
   padding: 25px;
+}
+
+.online-list{
+  margin-bottom: 50px;
 }
 
 /*ADDED ITEMS TO DOM, DISPLAY OF LIST*/
 
-.streamer-row{
-  margin-top: 50px;
-}
 
 li,
 .channel-link{
