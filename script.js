@@ -42,23 +42,46 @@ $(document).ready(function(){
       //GET AND DISPLAY ONLINE OR OFFLINE STATUS
         return $.getJSON(url2)
       }).then(function(json){
+
+        let a = document.createElement('a');
+
+        a.setAttribute('href', 'https://www.twitch.tv/' + user);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('class', 'channel-link')
+        a.setAttribute('id', 'status' + i);
+        document.getElementById('list' + i).appendChild(a);
+
         if (json.stream !== null) {
           info = json.stream.game;
 
           onOff = 'online ' + info;
+          document.getElementById('status' + i).classList.add('online');
         }else {
           onOff = 'offline';
+          document.getElementById('status' + i).classList.add('offline');
         }
 
+        a.innerText = onOff;
+
         //DISPLAY BY ADDING LIST ITEM
-        let a = document.createElement('a');
+        /*let a = document.createElement('a');
         a.innerText = onOff;
         a.setAttribute('href', 'https://www.twitch.tv/' + user);
         a.setAttribute('target', '_blank');
         a.setAttribute('class', 'channel-link')
-        document.getElementById('list' + i).appendChild(a);
+        a.setAttribute('id', 'status' + i);
+        document.getElementById('list' + i).appendChild(a);*/
+
+        /*if (onOff = 'offline') {
+          document.getElementById('status' + i).classList.add('offline');
+        }else if (onOff = 'online ' + info) {
+          document.getElementById('status' + i).classList.add('online');
+        }*/
 
       });
+
+
+
 
 }
 
