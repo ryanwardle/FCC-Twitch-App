@@ -2,6 +2,7 @@ $(document).ready(function(){
 
   showAllStreamers();
 
+
 function showAllStreamers(){
 
   let userArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
@@ -64,53 +65,51 @@ function showAllStreamers(){
         //SETTING TEXT OF <A> IN DOM;
         a.innerText = onOff;
 
-
-
-
-
-      //HAVE FULFILLED USER STORIES BUT CAN MAKE BETTER
-      //1. ALL ONLINE OFFLINE SORT BUTTONS
-      //2. SEARCH BAR TO SEARCH FOR STREAMER
-  //****WOULD BE ABOVE EXTRA****
-      //3. ABILITY TO ADD USER TO LIST
-      //4. ABILITY TO REMOVE USER
-
-
-
-
-
-    });
-
+});
 
 }
 
-//*********WORKING ON CLEARING RESULTS SO I CAN CLEANLY DISPLAY ON CLICK, AND DOESNT REPEAT
-        $('#all').click(function(){
-          clearStreamers();
-          showAllStreamers();
-        });
-
-        function clearStreamers(){
-          let streamers = document.getElementById('streamers');
-          while (streamers.firstChild) {
-            streamers.removeChild(streamers.firstChild);
-          }
-        }
-
-        $('#online').click(function(){
-          if (onOff === 'offline') {
-            showAllStreamers();
-            document.getElementById('list' + i).style.display = 'none';
-          }
-        });
-
-        $('#offline').click(function(){
-          if (onOff === 'online ' + info) {
-            showAllStreamers();
-            document.getElementById('list' + i).style.display = 'none';
-          }
-        });
-
 }
 
+//HAVE FULFILLED USER STORIES BUT CAN MAKE BETTER
+//1. ALL ONLINE OFFLINE SORT BUTTONS
+//2. SEARCH BAR TO SEARCH FOR STREAMER
+//****WOULD BE ABOVE EXTRA****
+//3. ABILITY TO ADD USER TO LIST
+//4. ABILITY TO REMOVE USER
+
+
+
+function clearStreamers(){
+  let streamers = document.getElementById('streamers');
+  while (streamers.firstChild) {
+  streamers.removeChild(streamers.firstChild);
+  }
+}
+
+$('#all').click(function(){
+  clearStreamers();
+  showAllStreamers();
+});
+
+
+});
+
+
+
+
+
+
+
+
+$('#offline').click(function(){
+  if ( onOff = 'online ' + info) {
+    document.getElementById('list' + i).style.display = 'none';
+  }
+});
+
+$('#online').click(function(){
+  if ( onOff = 'offline') {
+    document.getElementById('list' + i).style.display = 'none';
+  }
 });
