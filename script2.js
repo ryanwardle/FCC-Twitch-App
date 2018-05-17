@@ -69,21 +69,26 @@ function showAllStreamers(){
         //SETTING TEXT OF <A> IN DOM;
         a.innerText = onOff;
 
-        $('#online').click(function(){
-          onOffArray.forEach(function(val){
-            if (val === 'offline') {
-              document.getElementById('list' + i).style.display = 'none';
-            }
-          })
-        });
+        //******CLICK TO SEE WHO IS ONLINE OR OFFLINE
+        //***NEED TO BE ABLE TO CLICK FROM ONE TO ANOTHER AND HAVE DATA DISPLAYEDE INSTEAD OF HIDDEN
+        //***FOR SOME REASON ONLY WORKS SOMETIMES*****OFFLINE BUTTON IS INCONSISTENT
+            $('#online').click(function(){
+              onOffArray.forEach(function(val){
+                if (val === 'offline') {
+                  //clearStreamers();
+                  document.getElementById('list' + i).style.display = 'none';
+                }
+              })
+            });
 
-        $('#offline').click(function(){
-          onOffArray.forEach(function(val){
-            if (val === 'online ' + info) {
-              document.getElementById('list' + i).style.display = 'none';
-            }
-          })
-        });
+            $('#offline').click(function(){
+              onOffArray.forEach(function(val){
+                if (val === 'online ' + info) {
+                  //clearStreamers();
+                  document.getElementById('list' + i).style.display = 'none';
+                }
+              })
+            });
 
 });
 
@@ -99,7 +104,7 @@ function showAllStreamers(){
 //4. ABILITY TO REMOVE USER
 
 
-
+//FUNCTION CLEARS ALL STREAMERS
 function clearStreamers(){
   let streamers = document.getElementById('streamers');
   while (streamers.firstChild) {
@@ -107,6 +112,7 @@ function clearStreamers(){
   }
 }
 
+//CLICK TO DISPLAY ALL STREAMERS
 $('#all').click(function(){
   clearStreamers();
   showAllStreamers();
@@ -114,55 +120,3 @@ $('#all').click(function(){
 
 
 });
-
-
-
-
-
-/*
-
-$('#offline').click(function(){
-  showAllStreamers();
-  $('ul').hasClass('online').style.display = 'none';
-});
-*/
-/*
-$('#online').click(function(){
-  $('offline').hide();
-});
-
-$('#online').click(function(){
-  if (onOff = 'offline') {
-    document.getElementById('list' + i).style.display = 'none';
-  }
-});
-
-
-$('#offline').click(function(){
-  if (onOff = 'online ' + info) {
-    document.getElementClassName('online').style.display = 'none';
-  }
-});
-
-$('#online').click(function(){
-  $('online').parentNode.parentNode.hide();
-});
-*/
-
-/*
-$('#offline').click(function(){
-  clearStreamers();
-  showAllStreamers();
-  if (onOff = 'online ' + info) {
-
-  }
-});
-
-$('#offline').click(function(){
-  clearStreamers();
-  showAllStreamers();
-  if ($('list' + i).childNodes.hasClass('online')) {
-    document.getElementsByClassName('online').style.display = 'none';
-  }
-});
-*/
