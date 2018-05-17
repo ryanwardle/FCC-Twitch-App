@@ -6,10 +6,10 @@ $(document).ready(function(){
 function showAllStreamers(){
 
   let userArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-
+  let info;
     for (let i = 0; i < userArray.length; i++) {
 
-      let channelName, logo, onOff, info;
+      let channelName, logo, onOff; //, info;
       let user =  userArray[i];
       let url = 'https://wind-bow.gomix.me/twitch-api' + '/channels/' + user + '?callback=?';
       let url2 = 'https://wind-bow.gomix.me/twitch-api' + '/streams/' + user + '?callback=?';
@@ -52,18 +52,38 @@ function showAllStreamers(){
         a.setAttribute('id', 'status' + i);
         document.getElementById('list' + i).appendChild(a);
 
+        let onOffArray = [];
+
         if (json.stream !== null) {
           info = json.stream.game;
 
           onOff = 'online ' + info;
+          onOffArray.push(onOff);
           document.getElementById('status' + i).classList.add('online');
         }else {
           onOff = 'offline';
+          onOffArray.push(onOff);
           document.getElementById('status' + i).classList.add('offline');
         }
 
         //SETTING TEXT OF <A> IN DOM;
         a.innerText = onOff;
+
+        $('#online').click(function(){
+          onOffArray.forEach(function(val){
+            if (val === 'offline') {
+              document.getElementById('list' + i).style.display = 'none';
+            }
+          })
+        });
+
+        $('#offline').click(function(){
+          onOffArray.forEach(function(val){
+            if (val === 'online ' + info) {
+              document.getElementById('list' + i).style.display = 'none';
+            }
+          })
+        });
 
 });
 
@@ -99,17 +119,50 @@ $('#all').click(function(){
 
 
 
+/*
 
+$('#offline').click(function(){
+  showAllStreamers();
+  $('ul').hasClass('online').style.display = 'none';
+});
+*/
+/*
+$('#online').click(function(){
+  $('offline').hide();
+});
+
+$('#online').click(function(){
+  if (onOff = 'offline') {
+    document.getElementById('list' + i).style.display = 'none';
+  }
+});
 
 
 $('#offline').click(function(){
-  if ( onOff = 'online ' + info) {
-    document.getElementById('list' + i).style.display = 'none';
+  if (onOff = 'online ' + info) {
+    document.getElementClassName('online').style.display = 'none';
   }
 });
 
 $('#online').click(function(){
-  if ( onOff = 'offline') {
-    document.getElementById('list' + i).style.display = 'none';
+  $('online').parentNode.parentNode.hide();
+});
+*/
+
+/*
+$('#offline').click(function(){
+  clearStreamers();
+  showAllStreamers();
+  if (onOff = 'online ' + info) {
+
   }
 });
+
+$('#offline').click(function(){
+  clearStreamers();
+  showAllStreamers();
+  if ($('list' + i).childNodes.hasClass('online')) {
+    document.getElementsByClassName('online').style.display = 'none';
+  }
+});
+*/
