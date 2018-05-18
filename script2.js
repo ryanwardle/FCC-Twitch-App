@@ -6,10 +6,10 @@ $(document).ready(function(){
 function showAllStreamers(){
 
   let userArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-  let info;
+
     for (let i = 0; i < userArray.length; i++) {
 
-      let channelName, logo, onOff; //, info;
+      let channelName, logo, onOff, info;
       let user =  userArray[i];
       let url = 'https://wind-bow.gomix.me/twitch-api' + '/channels/' + user + '?callback=?';
       let url2 = 'https://wind-bow.gomix.me/twitch-api' + '/streams/' + user + '?callback=?';
@@ -52,8 +52,10 @@ function showAllStreamers(){
         a.setAttribute('id', 'status' + i);
         document.getElementById('list' + i).appendChild(a);
 
+        //ARRAY USED IN FOR EACH LOOP FOR ONLINE/OFFLINE CLICK BUTTONS
         let onOffArray = [];
 
+        //DISPLAYING ONLINE OFFLINE STATUS
         if (json.stream !== null) {
           info = json.stream.game;
 
@@ -70,22 +72,22 @@ function showAllStreamers(){
         a.innerText = onOff;
 
         //******CLICK TO SEE WHO IS ONLINE OR OFFLINE
-        //***NEED TO BE ABLE TO CLICK FROM ONE TO ANOTHER AND HAVE DATA DISPLAYEDE INSTEAD OF HIDDEN
-        //***FOR SOME REASON ONLY WORKS SOMETIMES*****OFFLINE BUTTON IS INCONSISTENT
             $('#online').click(function(){
               onOffArray.forEach(function(val){
                 if (val === 'offline') {
-                  //clearStreamers();
                   document.getElementById('list' + i).style.display = 'none';
+                }else if (val !== 'offline') {
+                  document.getElementById('list' + i).style.display = 'flex';
                 }
               })
             });
 
             $('#offline').click(function(){
               onOffArray.forEach(function(val){
-                if (val === 'online ' + info) {
-                  //clearStreamers();
+                if (val !== 'offline') {
                   document.getElementById('list' + i).style.display = 'none';
+                }else if (val === 'offline') {
+                  document.getElementById('list' + i).style.display = 'flex';
                 }
               })
             });
@@ -97,7 +99,6 @@ function showAllStreamers(){
 }
 
 //HAVE FULFILLED USER STORIES BUT CAN MAKE BETTER
-//1. ALL ONLINE OFFLINE SORT BUTTONS
 //2. SEARCH BAR TO SEARCH FOR STREAMER
 //****WOULD BE ABOVE EXTRA****
 //3. ABILITY TO ADD USER TO LIST

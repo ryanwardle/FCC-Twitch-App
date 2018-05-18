@@ -2,6 +2,11 @@
 
 $(document).ready(function(){
 
+  showAllStreamers();
+
+
+function showAllStreamers(){
+
   let userArray = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
     for (let i = 0; i < userArray.length; i++) {
@@ -21,7 +26,6 @@ $(document).ready(function(){
         //DISPLAY DATA BY MAKING AND INSERTING LIST INTO DOM
         let newUl = document.createElement('ul');
         newUl.setAttribute('id', 'list' + i);
-
         document.getElementById('streamers').appendChild(newUl);
 
         let li1 = document.createElement('li');
@@ -50,26 +54,72 @@ $(document).ready(function(){
         a.setAttribute('id', 'status' + i);
         document.getElementById('list' + i).appendChild(a);
 
+        //ARRAY USED IN FOR EACH LOOP FOR ONLINE/OFFLINE CLICK BUTTONS
+        let onOffArray = [];
+
+        //DISPLAYING ONLINE OFFLINE STATUS
         if (json.stream !== null) {
           info = json.stream.game;
 
           onOff = 'online ' + info;
+          onOffArray.push(onOff);
           document.getElementById('status' + i).classList.add('online');
         }else {
           onOff = 'offline';
+          onOffArray.push(onOff);
           document.getElementById('status' + i).classList.add('offline');
         }
 
         //SETTING TEXT OF <A> IN DOM;
         a.innerText = onOff;
-      });
 
-      //HAVE FULFILLED USER STORIES BUT CAN MAKE BETTER
-      //1. ALL ONLINE OFFLINE SORT BUTTONS
-      //2. SEARCH BAR TO SEARCH FOR STREAMER
-  //****WOULD BE ABOVE EXTRA****
-      //3. ABILITY TO ADD USER TO LIST
-      //4. ABILITY TO REMOVE USER
+        //******CLICK TO SEE WHO IS ONLINE OR OFFLINE
+            $('#online').click(function(){
+              onOffArray.forEach(function(val){
+                if (val === 'offline') {
+                  document.getElementById('list' + i).style.display = 'none';
+                }else if (val !== 'offline') {
+                  document.getElementById('list' + i).style.display = 'flex';
+                }
+              })
+            });
+
+            $('#offline').click(function(){
+              onOffArray.forEach(function(val){
+                if (val !== 'offline') {
+                  document.getElementById('list' + i).style.display = 'none';
+                }else if (val === 'offline') {
+                  document.getElementById('list' + i).style.display = 'flex';
+                }
+              })
+            });
+
+});
+
 }
+
+}
+
+//HAVE FULFILLED USER STORIES BUT CAN MAKE BETTER
+//2. SEARCH BAR TO SEARCH FOR STREAMER
+//****WOULD BE ABOVE EXTRA****
+//3. ABILITY TO ADD USER TO LIST
+//4. ABILITY TO REMOVE USER
+
+
+//FUNCTION CLEARS ALL STREAMERS
+function clearStreamers(){
+  let streamers = document.getElementById('streamers');
+  while (streamers.firstChild) {
+  streamers.removeChild(streamers.firstChild);
+  }
+}
+
+//CLICK TO DISPLAY ALL STREAMERS
+$('#all').click(function(){
+  clearStreamers();
+  showAllStreamers();
+});
+
 
 });
